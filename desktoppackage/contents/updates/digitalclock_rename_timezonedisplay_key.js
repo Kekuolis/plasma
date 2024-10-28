@@ -21,3 +21,33 @@ for (var i in containments) {
         }
     }
 }
+
+
+// // Atnaikinti visus skaitmeninius laikrodžius visose talpyklose, kad būtų naudojama pilno formato laiko juosta
+// var containments = desktops().concat(panels());
+
+// for (var cont of containments) {
+//     updateDigitalClockWidgets(cont);
+// }
+
+// function updateDigitalClockWidgets(cont) {
+//     for (var widgetId of cont.widgetIds) {
+//         var widget = cont.widgetById(widgetId);
+//         if (isDigitalClock(widget)) {
+//             configureWidget(widget);
+//         }
+//     }
+// }
+
+// function isDigitalClock(widget) {
+//     return widget.type === "org.kde.plasma.digitalclock";
+// }
+
+// function configureWidget(widget) {
+//     widget.currentConfigGroup = ['Appearance'];
+//     if (!widget.readConfig("displayTimezoneAsCode", true)) {
+//         widget.writeConfig("displayTimezoneFormat", "FullText");
+//         // Pašalinti pasenusią konfigūraciją
+//         widget.writeConfig("displayTimezoneAsCode", "");
+//     }
+// }

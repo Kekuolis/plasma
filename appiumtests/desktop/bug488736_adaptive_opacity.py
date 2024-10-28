@@ -100,6 +100,30 @@ class Bug488736Test(unittest.TestCase):
             self.fail("plasmashell does not appear on DBus after 10 secs")
         self.driver.find_element(AppiumBy.NAME, "Application Launcher")
 
+# def test_0_wait_until_ready(self) -> None:
+#     """
+#     Start plasmashell and wait until the DBus interface is ready.
+#     """
+#     if self.wait_for_plasmashell_ready():
+#         self.driver.find_element(AppiumBy.NAME, "Application Launcher")
+#     else:
+#         self.fail("plasmashell does not appear on DBus after 10 seconds")
+
+# def wait_for_plasmashell_ready(self, timeout: int = 10, interval: int = 1) -> bool:
+#     """
+#     Wait for plasmashell to be ready on the DBus session.
+
+#     :param timeout: Maximum time to wait for plasmashell (in seconds).
+#     :param interval: Interval to check for plasmashell readiness (in seconds).
+#     :return: True if plasmashell is ready, False otherwise.
+#     """
+#     for _ in range(timeout):
+#         if name_has_owner(self.session_bus, PLASMASHELL_SERVICE_NAME):
+#             return True
+#         print("Waiting for plasmashell to appear on the DBus session...")
+#         time.sleep(interval)
+#     return False
+
     def test_1_defloat_panel_and_set_color_background(self) -> None:
         """
         Defloat all panels to test the bug

@@ -5,61 +5,86 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-function filterDisabled(entries) {
-    let filteredEntries = [];
+// function filterDisabled(entries) {
+//     let filteredEntries = [];
 
-    // 0 = screen, 1 = activity, 2 = how many entries, 3 = desktop entry
-    let state = 0;
-    let entriesForCurrentScreen = 0;
+//     // 0 = screen, 1 = activity, 2 = how many entries, 3 = desktop entry
+//     let state = 0;
+//     let entriesForCurrentScreen = 0;
 
-    let currentScreen = -1;
-    let currentActivity = "";
-    let currentEntrtriesNumber = 0;
-    let currentEntry = 0;
-    let currentEntries = [];
+//     let currentScreen = -1;
+//     let currentActivity = "";
+//     let currentEntrtriesNumber = 0;
+//     let currentEntry = 0;
+//     let currentEntries = [];
 
-    for (let e of entries) {
-        switch (state) {
-        case 0: // Screen
-            currentScreen = e;
-            state = 1;
-            break;
-        case 1: // Activity
-            currentActivity = e;
-            state = 2;
-            break;
-        case 2: // Entries number
-            currentEntrtriesNumber = Number(e);
-            state = 3;
-            break;
-        case 3: // Desktop file
-            if (e.indexOf("desktop:/") !== 0) { // User has a folderview not in desktop:/
-                currentEntries.push(e);
-                currentEntry++;
-            } else {
-                let count = (e.match(/\//g) || []).length;
-                if (count == 1) {
-                    currentEntries.push(e);
-                    currentEntry++;
-                } else {
-                    currentEntrtriesNumber--;
-                }
-            }
+//     for (let e of entries) {
+//         switch (state) {
+//         case 0: // Screen
+//             currentScreen = e;
+//             state = 1;
+//             break;
+//         case 1: // Activity
+//             currentActivity = e;
+//             state = 2;
+//             break;
+//         case 2: // Entries number
+//             currentEntrtriesNumber = Number(e);
+//             state = 3;
+//             break;
+//         case 3: // Desktop file
+//             if (e.indexOf("desktop:/") !== 0) { // User has a folderview not in desktop:/
+//                 currentEntries.push(e);
+//                 currentEntry++;
+//             } else {
+//                 let count = (e.match(/\//g) || []).length;
+//                 if (count == 1) {
+//                     currentEntries.push(e);
+//                     currentEntry++;
+//                 } else {
+//                     currentEntrtriesNumber--;
+//                 }
+//             }
 
-            if (currentEntry === currentEntrtriesNumber) {
-                state = 0;
-                if (currentEntries.length > 0) {
-                    filteredEntries = filteredEntries.concat([currentScreen, currentActivity, currentEntrtriesNumber]);
-                    filteredEntries = filteredEntries.concat(currentEntries);
-                    currentEntries = [];
-                }
-            }
-            break;
-        }
+//             if (currentEntry === currentEntrtriesNumber) {
+//                 state = 0;
+//                 if (currentEntries.length > 0) {
+//                     filteredEntries = filteredEntries.concat([currentScreen, currentActivity, currentEntrtriesNumber]);
+//                     filteredEntries = filteredEntries.concat(currentEntries);
+//                     currentEntries = [];
+//                 }
+//             }
+//             break;
+//         }
 
-    }
-    return filteredEntries;
-}
+//     }
+//     return filteredEntries;
+// }
+
+// function filterDisabled(entries) {
+//     let filteredEntries = [];
+//     let currentScreen = -1;
+//     let currentActivity = "";
+//     let currentEntries = [];
+
+//     for (let e of entries) {
+//         let state = determineState(e);
+//         if (state === 0) currentScreen = e;
+//         else if (state === 1) currentActivity = e;
+//         else if (state === 2) processEntries(e, currentEntries, filteredEntries, currentScreen, currentActivity);
+//     }
+//     return filteredEntries;
+// }
+
+// function determineState(entry) {
+//     // Logic to determine state based on entry
+// }
+
+// function processEntries(entry, currentEntries, filteredEntries, currentScreen, currentActivity) {
+//     // Logic to process entries
+//     // Update filteredEntries accordingly
+// }
+
 
 function filterEnabled(entries) {
     let filteredEntries = [];
