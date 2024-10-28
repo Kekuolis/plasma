@@ -26,6 +26,7 @@ class Bug472909Test(unittest.TestCase):
     kactivitymanagerd: subprocess.Popen | None = None
     kded: subprocess.Popen | None = None
     plasmashell: subprocess.Popen | None = None
+    applicationLauncher = "Application Launcher"
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -60,7 +61,7 @@ class Bug472909Test(unittest.TestCase):
 
     def test_bug472909(self) -> None:
         wait = WebDriverWait(self.driver, 30)
-        wait.until(EC.presence_of_element_located((AppiumBy.NAME, "Application Launcher")))
+        wait.until(EC.presence_of_element_located((AppiumBy.NAME, applicationLauncher)))
 
         # The driver doesn't support sending global keyboard shortcuts
         session_bus: Gio.DBusConnection = Gio.bus_get_sync(Gio.BusType.SESSION)
@@ -72,7 +73,7 @@ class Bug472909Test(unittest.TestCase):
             shortcut_info: GLib.Variant = shortcut_list.get_child_value(i)
             shortcut_id: str = shortcut_info.get_child_value(0).get_string()
             if not shortcut_id.startswith("activate application launcher"):
-                continue
+                continue    
             launcher_shortcut_id = shortcut_id
             break
         self.assertGreater(len(launcher_shortcut_id), 0)

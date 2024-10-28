@@ -5,7 +5,7 @@
 //   "head (attr11 attr12 ..., attr21 attr22 ..., ...)" (compound)
 function headed_name_to_case (gcase, composed)
 {
-    var p = composed.lastIndexOf("("); // in case of (...) in the head
+    const p = composed.lastIndexOf("("); // in case of (...) in the head
     if (p < 0) {
         // The basic format.
         // Assume there may be no comma or attributes, so check thoroughly.
